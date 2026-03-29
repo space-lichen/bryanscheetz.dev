@@ -5,16 +5,105 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bryan Scheetz</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: sans-serif;
-      max-width: 600px;
+      font-family: Consolas, 'Courier New', monospace;
+      font-weight: bold;
+      background: #0f0f0f;
+      color: #d4d4d4;
+      max-width: 680px;
       margin: 60px auto;
-      padding: 0 20px;
+      padding: 0 24px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+      font-weight: normal;
+      color: #f0f0f0;
+      margin-bottom: 4px;
+    }
+
+    h2 {
+      font-size: 0.85rem;
+      font-weight: normal;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin: 32px 0 10px;
+    }
+
+    p {
+      margin: 0 0 8px;
+      color: #999;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #222;
+      margin: 20px 0;
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    nav a {
+      color: #888;
+      text-decoration: none;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding-bottom: 4px;
+      border-bottom: 1px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #f0f0f0;
+      border-bottom-color: #555;
     }
 
     a {
-      color: black;
+      color: #7eb8d4;
+      text-decoration: none;
     }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    ul li {
+      padding: 4px 0;
+      color: #aaa;
+    }
+
+    ul li::before {
+      content: '> ';
+      color: #444;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
   </style>
 </head>
 <body>
@@ -24,21 +113,52 @@
 
   <hr>
 
-  <h2>About</h2>
-  <p>software dev working in the process control industry.</p>
+  <nav>
+    <a href="#" class="active" onclick="showSection('about', this)">About</a>
+    <a href="#" onclick="showSection('projects', this)">Projects</a>
+    <a href="#" onclick="showSection('blog', this)">Blog</a>
+    <a href="#" onclick="showSection('contact', this)">Contact</a>
+  </nav>
 
-  <h2>Projects</h2>
-  <ul>
-    <li><a href="#">Project One</a> — short description</li>
-    <li><a href="#">Project Two</a> — short description</li>
-  </ul>
+  <div id="about" class="section active">
+    <h2>About</h2>
+    <p>software dev working in the process control industry.</p>
+  </div>
 
-  <h2>Contact</h2>
-  <ul>
-    <li><a href="mailto:you@email.com">Email</a></li>
-    <li><a href="https://github.com/yourusername">GitHub</a></li>
-    <li><a href="https://linkedin.com/in/yourusername">LinkedIn</a></li>
-  </ul>
+  <div id="projects" class="section">
+    <h2>Projects</h2>
+    <ul>
+      <li><a href="#">Project One</a> — short description</li>
+      <li><a href="#">Project Two</a> — short description</li>
+    </ul>
+  </div>
+
+  <div id="blog" class="section">
+    <h2>Blog</h2>
+    <ul>
+      <li><a href="#">Post One</a> — short description</li>
+      <li><a href="#">Post Two</a> — short description</li>
+    </ul>
+  </div>
+
+  <div id="contact" class="section">
+    <h2>Contact</h2>
+    <ul>
+      <li><a href="mailto:you@email.com">Email</a></li>
+      <li><a href="https://github.com/yourusername">GitHub</a></li>
+      <li><a href="https://linkedin.com/in/yourusername">LinkedIn</a></li>
+    </ul>
+  </div>
+
+  <script>
+    function showSection(id, link) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      link.classList.add('active');
+      return false;
+    }
+  </script>
 
 </body>
 </html>
